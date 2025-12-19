@@ -1,0 +1,66 @@
+{% extends 'base.html' %}
+
+{% block title %}添加图书 - 图书馆借阅系统{% endblock %}
+
+{% block content %}
+<div class="container">
+    <h2 class="mb-4">添加图书</h2>
+    
+    <div class="card">
+        <div class="card-header">
+            <h5>图书信息</h5>
+        </div>
+        <div class="card-body">
+            <form method="POST" action="{{ url_for('admin_add_book') }}">
+                <div class="mb-3">
+                    <label for="title" class="form-label">图书名称</label>
+                    <input type="text" class="form-control" id="title" name="title" required>
+                </div>
+                
+                <div class="mb-3">
+                    <label for="type" class="form-label">类型</label>
+                    <select class="form-control" id="type" name="type" required>
+                        <option value="book">图书</option>
+                        <option value="magazine">杂志</option>
+                    </select>
+                </div>
+                
+                <div class="mb-3">
+                    <label for="author" class="form-label">作者</label>
+                    <input type="text" class="form-control" id="author" name="author">
+                </div>
+                
+                <div class="mb-3">
+                    <label for="isbn" class="form-label">ISBN</label>
+                    <input type="text" class="form-control" id="isbn" name="isbn">
+                </div>
+                
+                <div class="mb-3">
+                    <label for="category" class="form-label">分类</label>
+                    <input type="text" class="form-control" id="category" name="category">
+                </div>
+                
+                <div class="mb-3">
+                    <label for="issue" class="form-label">期号（杂志）</label>
+                    <input type="text" class="form-control" id="issue" name="issue">
+                </div>
+                
+                <div class="mb-3">
+                    <label for="publisher" class="form-label">出版社</label>
+                    <input type="text" class="form-control" id="publisher" name="publisher">
+                </div>
+                
+                <div class="mb-3 form-check">
+                    <input type="checkbox" class="form-check-input" id="is_latest" name="is_latest">
+                    <label class="form-check-label" for="is_latest">最新期（杂志）</label>
+                </div>
+                
+                <div class="mt-4">
+                    <button type="submit" class="btn btn-primary">添加图书</button>
+                    <a href="{{ url_for('admin_manage_books') }}" class="btn btn-secondary ml-2">取消</a>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+{% endblock %}

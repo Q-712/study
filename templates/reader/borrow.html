@@ -1,0 +1,70 @@
+{% extends 'base.html' %}
+
+{% block title %}借阅图书 - 图书馆借阅系统{% endblock %}
+
+{% block content %}
+<div class="container">
+    <h2 class="mb-4">借阅图书</h2>
+    
+    <!-- 搜索表单 -->
+    <div class="card mb-4">
+        <div class="card-body">
+            <form method="GET" action="{{ url_for('reader_borrow_books') }}">
+                <div class="input-group">
+                    <input type="text" class="form-control" placeholder="搜索图书名称、作者、分类或ISBN..." name="search" value="{{ search_query }}">
+                    <button type="submit" class="btn btn-primary">搜索</button>
+                    {% if search_query %}
+                    <a href="{{ url_for('reader_borrow_books') }}" class="btn btn-secondary">清除</a>
+                    {% endif %}
+                </div>
+            </form>
+        </div>
+    </div>
+    
+    <div class="card">
+        <div class="card-header">
+            <h5>可借阅图书列表</h5>
+        </div>
+        <div class="card-body">
+            {% if books %}
+            <div class="table-responsive">
+                <table class="table table-striped">
+                    <thead>
+                        <tr>
+                            <th>图书名称</th>
+                            <th>类型</th>
+                            <th>作者</th>
+                            <th>ISBN</th>
+                            <th>分类</th>
+                            <th>操作</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for book in books %}
+                            <tr>
+                                <td>{{ book.title }}</td>
+                                <td>{{ '图书' if book.type == 'book' else '杂志' }}</td>
+                                <td>{{ book.author or '未知' }}</td>
+                                <td>{{ book.isbn or '未知' }}</td>
+                                <td>{{ book.category or '未知' }}</td>
+                                <td>
+                                    <form method="POST" action="{{ url_for('reader_borrow_book', book_id=book.id) }}">
+                                        <button type="submit" class="btn btn-sm btn-primary">借阅</button>
+                                    </form>
+                                </td>
+                            </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+            {% else %}
+                <p class="text-center">当前没有可借阅的图书。</p>
+            {% endif %}
+        </div>
+    </div>
+    
+    <div class="mt-4">
+        <a href="{{ url_for('reader_dashboard') }}" class="btn btn-primary">返回首页</a>
+    </div>
+</div>
+{% endblock %}

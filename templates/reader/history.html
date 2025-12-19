@@ -1,0 +1,49 @@
+{% extends 'base.html' %}
+
+{% block title %}借阅记录 - 图书馆借阅系统{% endblock %}
+
+{% block content %}
+<div class="container">
+    <h2 class="mb-4">借阅记录</h2>
+    
+    <div class="card">
+        <div class="card-header">
+            <h5>借阅历史记录</h5>
+        </div>
+        <div class="card-body">
+            {% if records %}
+            <div class="table-responsive">
+                <table class="table table-striped">
+                    <thead>
+                        <tr>
+                            <th>图书名称</th>
+                            <th>借阅日期</th>
+                            <th>应归还日期</th>
+                            <th>实际归还日期</th>
+                            <th>状态</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for record in records %}
+                            <tr>
+                                <td>{{ record.publication.title }}</td>
+                                <td>{{ record.borrow_date.strftime('%Y-%m-%d') }}</td>
+                                <td>{{ record.due_date.strftime('%Y-%m-%d') }}</td>
+                                <td>{{ record.return_date.strftime('%Y-%m-%d') if record.return_date else '未归还' }}</td>
+                                <td>{{ '已归还' if record.return_date else '借阅中' }}</td>
+                            </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+            {% else %}
+                <p class="text-center">您没有任何借阅记录。</p>
+            {% endif %}
+        </div>
+    </div>
+    
+    <div class="mt-4">
+        <a href="{{ url_for('reader_dashboard') }}" class="btn btn-primary">返回首页</a>
+    </div>
+</div>
+{% endblock %}

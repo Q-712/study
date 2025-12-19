@@ -1,0 +1,52 @@
+{% extends 'base.html' %}
+
+{% block title %}读者管理 - 图书馆借阅系统{% endblock %}
+
+{% block content %}
+<div class="container">
+    <h2 class="mb-4">读者管理</h2>
+    
+    <!-- 添加读者按钮 -->
+    <div class="mb-4">
+        <a href="{{ url_for('admin_add_reader') }}" class="btn btn-primary">添加读者</a>
+    </div>
+    
+    <div class="card">
+        <div class="card-header">
+            <h5>读者列表</h5>
+        </div>
+        <div class="card-body">
+            {% if readers %}
+            <div class="table-responsive">
+                <table class="table table-striped">
+                    <thead>
+                        <tr>
+                            <th>姓名</th>
+                            <th>读者ID</th>
+                            <th>用户名</th>
+                            <th>当前借阅数量</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for reader in readers %}
+                            <tr>
+                                <td>{{ reader.name }}</td>
+                                <td>{{ reader.reader_id }}</td>
+                                <td>{{ reader.username }}</td>
+                                <td>{{ reader.borrowed_items|length }}</td>
+                            </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+            {% else %}
+                <p class="text-center">当前没有读者记录。</p>
+            {% endif %}
+        </div>
+    </div>
+    
+    <div class="mt-4">
+        <a href="{{ url_for('admin_dashboard') }}" class="btn btn-primary">返回首页</a>
+    </div>
+</div>
+{% endblock %}

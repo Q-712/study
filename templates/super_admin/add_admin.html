@@ -1,0 +1,43 @@
+{% extends 'base.html' %}
+
+{% block title %}添加管理员 - 图书馆借阅系统{% endblock %}
+
+{% block content %}
+<div class="container">
+    <h2 class="mb-4">添加管理员</h2>
+    
+    <div class="card">
+        <div class="card-header">
+            <h5>管理员信息</h5>
+        </div>
+        <div class="card-body">
+            <form method="POST" action="{{ url_for('super_admin_add_admin') }}">
+                <div class="mb-3">
+                    <label for="name" class="form-label">姓名</label>
+                    <input type="text" class="form-control" id="name" name="name" required>
+                </div>
+                
+                <div class="mb-3">
+                    <label for="admin_id" class="form-label">管理员ID</label>
+                    <input type="text" class="form-control" id="admin_id" name="admin_id" required>
+                </div>
+                
+                <div class="mb-3">
+                    <label for="username" class="form-label">用户名</label>
+                    <input type="text" class="form-control" id="username" name="username" required>
+                </div>
+                
+                <div class="mb-3">
+                    <label for="password" class="form-label">密码</label>
+                    <input type="password" class="form-control" id="password" name="password" required>
+                </div>
+                
+                <div class="mt-4">
+                    <button type="submit" class="btn btn-primary">添加管理员</button>
+                    <a href="{{ url_for('super_admin_manage_admins') }}" class="btn btn-secondary ml-2">取消</a>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+{% endblock %}

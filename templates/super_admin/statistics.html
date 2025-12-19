@@ -1,0 +1,108 @@
+{% extends 'base.html' %}
+
+{% block title %}数据统计 - 图书馆借阅系统{% endblock %}
+
+{% block content %}
+<div class="container">
+    <h2 class="mb-4">数据统计</h2>
+    
+    <div class="row">
+        <!-- 图书统计卡片 -->
+        <div class="col-md-4 mb-4">
+            <div class="card text-center">
+                <div class="card-body">
+                    <h3 class="text-primary">📚</h3>
+                    <h5>总图书数</h5>
+                    <p class="display-4">{{ total_books }}</p>
+                </div>
+            </div>
+        </div>
+        
+        <div class="col-md-4 mb-4">
+            <div class="card text-center">
+                <div class="card-body">
+                    <h3 class="text-warning">📖</h3>
+                    <h5>已借阅图书</h5>
+                    <p class="display-4">{{ total_books_borrowed }}</p>
+                </div>
+            </div>
+        </div>
+        
+        <div class="col-md-4 mb-4">
+            <div class="card text-center">
+                <div class="card-body">
+                    <h3 class="text-success">✅</h3>
+                    <h5>可借阅图书</h5>
+                    <p class="display-4">{{ total_books_available }}</p>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <div class="row">
+        <!-- 用户统计卡片 -->
+        <div class="col-md-4 mb-4">
+            <div class="card text-center">
+                <div class="card-body">
+                    <h3 class="text-primary">👨‍💼</h3>
+                    <h5>总管理员数</h5>
+                    <p class="display-4">{{ total_admins }}</p>
+                </div>
+            </div>
+        </div>
+        
+        <div class="col-md-4 mb-4">
+            <div class="card text-center">
+                <div class="card-body">
+                    <h3 class="text-success">👨‍🎓</h3>
+                    <h5>总读者数</h5>
+                    <p class="display-4">{{ total_readers }}</p>
+                </div>
+            </div>
+        </div>
+        
+        <div class="col-md-4 mb-4">
+            <div class="card text-center">
+                <div class="card-body">
+                    <h3 class="text-info">📊</h3>
+                    <h5>总借阅记录</h5>
+                    <p class="display-4">{{ total_borrow_records }}</p>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <div class="row">
+        <!-- 借阅统计卡片 -->
+        <div class="col-md-6 mb-4">
+            <div class="card text-center">
+                <div class="card-body">
+                    <h3 class="text-warning">⏳</h3>
+                    <h5>当前借阅数</h5>
+                    <p class="display-4">{{ total_active_borrows }}</p>
+                </div>
+            </div>
+        </div>
+        
+        <div class="col-md-6 mb-4">
+            <div class="card text-center">
+                <div class="card-body">
+                    <h3 class="text-info">📈</h3>
+                    <h5>借阅率</h5>
+                    <p class="display-4">
+                        {% if total_books > 0 %}
+                            {{ (total_books_borrowed / total_books * 100)|round(1) }}%
+                        {% else %}
+                            0%
+                        {% endif %}
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <div class="mt-4">
+        <a href="{{ url_for('super_admin_dashboard') }}" class="btn btn-primary">返回首页</a>
+    </div>
+</div>
+{% endblock %}

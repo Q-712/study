@@ -1,0 +1,43 @@
+{% extends 'base.html' %}
+
+{% block title %}添加读者 - 图书馆借阅系统{% endblock %}
+
+{% block content %}
+<div class="container">
+    <h2 class="mb-4">添加读者</h2>
+    
+    <div class="card">
+        <div class="card-header">
+            <h5>读者信息</h5>
+        </div>
+        <div class="card-body">
+            <form method="POST" action="{{ url_for('admin_add_reader') }}">
+                <div class="mb-3">
+                    <label for="name" class="form-label">姓名</label>
+                    <input type="text" class="form-control" id="name" name="name" required>
+                </div>
+                
+                <div class="mb-3">
+                    <label for="reader_id" class="form-label">读者ID</label>
+                    <input type="text" class="form-control" id="reader_id" name="reader_id" required>
+                </div>
+                
+                <div class="mb-3">
+                    <label for="username" class="form-label">用户名</label>
+                    <input type="text" class="form-control" id="username" name="username" required>
+                </div>
+                
+                <div class="mb-3">
+                    <label for="password" class="form-label">密码</label>
+                    <input type="password" class="form-control" id="password" name="password" required>
+                </div>
+                
+                <div class="mt-4">
+                    <button type="submit" class="btn btn-primary">添加读者</button>
+                    <a href="{{ url_for('admin_manage_readers') }}" class="btn btn-secondary ml-2">取消</a>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+{% endblock %}
