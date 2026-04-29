@@ -1,6 +1,6 @@
 {% extends 'base.html' %}
 
-{% block title %}系统配置 - 图书馆借阅系统{% endblock %}
+{% block title %}系统配置 - 知境文本分析系统{% endblock %}
 
 {% block content %}
 <div class="container">
@@ -14,12 +14,7 @@
             <div class="card-body">
                 <div class="form-group mb-3">
                     <label for="system_name" class="form-label">系统名称</label>
-                    <input type="text" class="form-control" id="system_name" name="system_name" value="{{ config_dict.get('system_name', '图书馆借阅系统') }}">
-                </div>
-                
-                <div class="form-group mb-3">
-                    <label for="max_borrow_days" class="form-label">最大借阅天数</label>
-                    <input type="number" class="form-control" id="max_borrow_days" name="max_borrow_days" value="{{ config_dict.get('max_borrow_days', '30') }}">
+                    <input type="text" class="form-control" id="system_name" name="system_name" value="{{ config_dict.get('system_name', '知境文本分析系统') }}">
                 </div>
             </div>
         </div>

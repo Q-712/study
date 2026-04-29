@@ -1,0 +1,54 @@
+{% extends 'base.html' %}
+
+{% block title %}文件详情 - 知境文本分析系统{% endblock %}
+
+{% block content %}
+<div class="container">
+    <h2 class="mb-4">文件详情</h2>
+    
+    <div class="card">
+        <div class="card-header">
+            <h5>{{ file.original_filename }}</h5>
+        </div>
+        <div class="card-body">
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="mb-3">
+                        <strong>文件名：</strong>{{ file.original_filename }}
+                    </div>
+                    <div class="mb-3">
+                        <strong>文件类型：</strong>{{ file.file_type.upper() }}
+                    </div>
+                    <div class="mb-3">
+                        <strong>文件大小：</strong>{{ (file.size / 1024 / 1024)|round(2) }} MB
+                    </div>
+                    <div class="mb-3">
+                        <strong>上传时间：</strong>{{ file.upload_date.strftime('%Y-%m-%d %H:%M:%S') }}
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="mb-3">
+                        <strong>文件描述：</strong>{{ file.description or '无' }}
+                    </div>
+                    {% if file.word_count > 0 %}
+                    <div class="mb-3">
+                        <strong>词数统计：</strong>{{ file.word_count }} 词
+                    </div>
+                    <div class="mb-3">
+                        <strong>字符统计：</strong>{{ file.char_count }} 字符
+                    </div>
+                    <div class="mb-3">
+                        <strong>行数统计：</strong>{{ file.line_count }} 行
+                    </div>
+                    {% endif %}
+                </div>
+            </div>
+            
+            <div class="mt-4">
+                <a href="{{ url_for('user_download_file', file_id=file.id) }}" class="btn btn-primary">下载文件</a>
+                <a href="{{ url_for('user_files') }}" class="btn btn-secondary ml-2">返回列表</a>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

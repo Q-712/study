@@ -113,6 +113,24 @@ ENV/
 env.bak/
 venv.bak/
 
+# IDE
+.idea/
+.vscode/
+*.swp
+*.swo
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Test files
+test_*.py
+check_db.py
+图书馆借阅系统.py
+
+# Misc
+*.db-journal
+
 # Spyder project settings
 .spyderproject
 .spyproject

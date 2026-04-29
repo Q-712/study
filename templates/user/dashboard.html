@@ -1,0 +1,94 @@
+{% extends 'base.html' %}
+
+{% block title %}用户端 - 文本分析系统{% endblock %}
+
+{% block content %}
+<div class="container">
+    <h2 class="mb-4">欢迎登陆知境文本分析系统，{{ current_user.username }}</h2>
+    
+    <!-- 统计卡片 -->
+    <div class="row mb-4">
+        <div class="col-md-3 mb-4">
+            <div class="card text-center">
+                <div class="card-body">
+                    <h3 class="text-primary">📄</h3>
+                    <h5>总文件数</h5>
+                    <p class="display-4">{{ total_files }}</p>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-3 mb-4">
+            <div class="card text-center">
+                <div class="card-body">
+                    <h3 class="text-info">📕</h3>
+                    <h5>PDF文件</h5>
+                    <p class="display-4">{{ pdf_count }}</p>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-3 mb-4">
+            <div class="card text-center">
+                <div class="card-body">
+                    <h3 class="text-success">📘</h3>
+                    <h5>Word文件</h5>
+                    <p class="display-4">{{ doc_count }}</p>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-3 mb-4">
+            <div class="card text-center">
+                <div class="card-body">
+                    <h3 class="text-warning">📝</h3>
+                    <h5>文本文件</h5>
+                    <p class="display-4">{{ text_count }}</p>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <div class="row">
+        <!-- 文件列表卡片 -->
+        <div class="col-md-4 mb-4">
+            <div class="card h-100">
+                <div class="card-header">
+                    <h5>📁 文件列表</h5>
+                </div>
+                <div class="card-body">
+                    <p>浏览和下载系统中的文件资源。</p>
+                    <a href="{{ url_for('user_files') }}" class="btn btn-primary w-100">查看文件</a>
+                </div>
+            </div>
+        </div>
+        
+        <!-- 智能搜索卡片 -->
+        <div class="col-md-4 mb-4">
+            <div class="card h-100">
+                <div class="card-header">
+                    <h5>🔍 智能搜索</h5>
+                </div>
+                <div class="card-body">
+                    <p>基于AI对书籍内容进行深度分析和搜索。</p>
+                    <a href="{{ url_for('user_search') }}" class="btn btn-success w-100">开始搜索</a>
+                </div>
+            </div>
+        </div>
+        
+        <!-- 个人信息卡片 -->
+        <div class="col-md-4 mb-4">
+            <div class="card h-100">
+                <div class="card-header">
+                    <h5>👤 个人信息</h5>
+                </div>
+                <div class="card-body">
+                    <div class="mb-2"><strong>姓名：</strong>{{ current_user.name }}</div>
+                    <div class="mb-2"><strong>用户ID：</strong>{{ current_user.user_id }}</div>
+                    <div class="mb-2"><strong>用户名：</strong>{{ current_user.username }}</div>
+                    <div class="mt-3">
+                        <a href="{{ url_for('logout') }}" class="btn btn-secondary w-100">退出登录</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

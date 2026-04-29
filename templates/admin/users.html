@@ -1,0 +1,56 @@
+{% extends 'base.html' %}
+
+{% block title %}用户管理 - 知境文本分析系统{% endblock %}
+
+{% block content %}
+<div class="container">
+    <h2 class="mb-4">用户管理</h2>
+    
+    <!-- 添加用户按钮 -->
+    <div class="mb-4">
+        <a href="{{ url_for('admin_add_user') }}" class="btn btn-primary">添加用户</a>
+    </div>
+    
+    <div class="card">
+        <div class="card-header">
+            <h5>用户列表</h5>
+        </div>
+        <div class="card-body">
+            {% if users %}
+            <div class="table-responsive">
+                <table class="table table-striped">
+                    <thead>
+                        <tr>
+                            <th>姓名</th>
+                            <th>用户ID</th>
+                            <th>用户名</th>
+                            <th>操作</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for user in users %}
+                            <tr>
+                                <td>{{ user.name }}</td>
+                                <td>{{ user.user_id }}</td>
+                                <td>{{ user.username }}</td>
+                                <td>
+                                    <form method="POST" action="{{ url_for('admin_delete_user', user_id=user.id) }}" onsubmit="return confirm('确定要删除用户 {{ user.username }} 吗？该操作将删除该用户的所有文件！');" style="display:inline;">
+                                        <button type="submit" class="btn btn-danger btn-sm">删除</button>
+                                    </form>
+                                </td>
+                            </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+            {% else %}
+                <p class="text-center">当前没有用户记录。</p>
+            {% endif %}
+        </div>
+    </div>
+    
+    <div class="mt-4">
+        <a href="{{ url_for('admin_dashboard') }}" class="btn btn-primary">返回首页</a>
+    </div>
+</div>
+{% endblock %}

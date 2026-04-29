@@ -1,6 +1,6 @@
 {% extends 'base.html' %}
 
-{% block title %}超级管理员端 - 图书馆借阅系统{% endblock %}
+{% block title %}超级管理员端 - 知境文本分析系统{% endblock %}
 
 {% block content %}
 <div class="container">
@@ -61,18 +61,18 @@
         <div class="col-md-4">
             <div class="card text-center">
                 <div class="card-body">
-                    <h3 class="text-success">👨‍🎓</h3>
-                    <h5>总读者数</h5>
-                    <p class="display-4">{{ total_readers }}</p>
+                    <h3 class="text-success">👤</h3>
+                    <h5>总用户数</h5>
+                    <p class="display-4">{{ total_users }}</p>
                 </div>
             </div>
         </div>
         <div class="col-md-4">
             <div class="card text-center">
                 <div class="card-body">
-                    <h3 class="text-warning">📚</h3>
-                    <h5>总图书数</h5>
-                    <p class="display-4">{{ total_books }}</p>
+                    <h3 class="text-warning">📄</h3>
+                    <h5>总文件数</h5>
+                    <p class="display-4">{{ total_files }}</p>
                 </div>
             </div>
         </div>
