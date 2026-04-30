@@ -1,0 +1,43 @@
+{% extends 'base.html' %}
+
+{% block title %}添加用户 - 知境文本分析系统{% endblock %}
+
+{% block content %}
+<div class="container">
+    <h2 class="mb-4">添加用户</h2>
+    
+    <div class="card">
+        <div class="card-header">
+            <h5>用户信息</h5>
+        </div>
+        <div class="card-body">
+            <form method="POST" action="{{ url_for('admin_add_user') }}">
+                <div class="mb-3">
+                    <label for="name" class="form-label">姓名</label>
+                    <input type="text" class="form-control" id="name" name="name" required>
+                </div>
+                
+                <div class="mb-3">
+                    <label for="user_id" class="form-label">用户ID</label>
+                    <input type="text" class="form-control" id="user_id" name="user_id" required>
+                </div>
+                
+                <div class="mb-3">
+                    <label for="username" class="form-label">用户名</label>
+                    <input type="text" class="form-control" id="username" name="username" required>
+                </div>
+                
+                <div class="mb-3">
+                    <label for="password" class="form-label">密码</label>
+                    <input type="password" class="form-control" id="password" name="password" required>
+                </div>
+                
+                <div class="mt-4">
+                    <button type="submit" class="btn btn-primary">添加用户</button>
+                    <a href="{{ url_for('admin_manage_users') }}" class="btn btn-secondary ml-2">取消</a>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+{% endblock %}

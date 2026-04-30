@@ -1,0 +1,158 @@
+{% extends 'base.html' %}
+
+{% block title %}数据统计 - 知境文本分析系统{% endblock %}
+
+{% block content %}
+<div class="container">
+    <h2 class="mb-4">数据统计</h2>
+    
+    <div class="row">
+        <!-- 文件统计卡片 -->
+        <div class="col-md-4 mb-4">
+            <div class="card text-center">
+                <div class="card-body">
+                    <h3 class="text-primary">📄</h3>
+                    <h5>总文件数</h5>
+                    <p class="display-4">{{ total_files }}</p>
+                </div>
+            </div>
+        </div>
+        
+        <div class="col-md-4 mb-4">
+            <div class="card text-center">
+                <div class="card-body">
+                    <h3 class="text-success">👤</h3>
+                    <h5>总用户数</h5>
+                    <p class="display-4">{{ total_users }}</p>
+                </div>
+            </div>
+        </div>
+        
+        <div class="col-md-4 mb-4">
+            <div class="card text-center">
+                <div class="card-body">
+                    <h3 class="text-warning">👨‍💼</h3>
+                    <h5>总管理员数</h5>
+                    <p class="display-4">{{ total_admins }}</p>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <div class="row">
+        <!-- 文件类型统计卡片 -->
+        <div class="col-md-3 mb-4">
+            <div class="card text-center">
+                <div class="card-body">
+                    <h3 class="text-primary">📕</h3>
+                    <h5>PDF文件</h5>
+                    <p class="display-4">{{ pdf_count }}</p>
+                </div>
+            </div>
+        </div>
+        
+        <div class="col-md-3 mb-4">
+            <div class="card text-center">
+                <div class="card-body">
+                    <h3 class="text-success">📘</h3>
+                    <h5>DOC文件</h5>
+                    <p class="display-4">{{ doc_count }}</p>
+                </div>
+            </div>
+        </div>
+        
+        <div class="col-md-3 mb-4">
+            <div class="card text-center">
+                <div class="card-body">
+                    <h3 class="text-warning">📗</h3>
+                    <h5>DOCX文件</h5>
+                    <p class="display-4">{{ docx_count }}</p>
+                </div>
+            </div>
+        </div>
+        
+        <div class="col-md-3 mb-4">
+            <div class="card text-center">
+                <div class="card-body">
+                    <h3 class="text-info">📓</h3>
+                    <h5>TXT文件</h5>
+                    <p class="display-4">{{ txt_count }}</p>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <div class="row">
+        <!-- 更多统计卡片 -->
+        <div class="col-md-3 mb-4">
+            <div class="card text-center">
+                <div class="card-body">
+                    <h3 class="text-primary">📝</h3>
+                    <h5>MD文件</h5>
+                    <p class="display-4">{{ md_count }}</p>
+                </div>
+            </div>
+        </div>
+        
+        <div class="col-md-3 mb-4">
+            <div class="card text-center">
+                <div class="card-body">
+                    <h3 class="text-success">💾</h3>
+                    <h5>总文件大小</h5>
+                    <p class="display-4">{{ (total_size / 1024 / 1024)|round(2) }} MB</p>
+                </div>
+            </div>
+        </div>
+        
+        <div class="col-md-3 mb-4">
+            <div class="card text-center">
+                <div class="card-body">
+                    <h3 class="text-warning">🔤</h3>
+                    <h5>总词数</h5>
+                    <p class="display-4">{{ total_word_count }}</p>
+                </div>
+            </div>
+        </div>
+        
+        <div class="col-md-3 mb-4">
+            <div class="card text-center">
+                <div class="card-body">
+                    <h3 class="text-info">📄</h3>
+                    <h5>总行数</h5>
+                    <p class="display-4">{{ total_line_count }}</p>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <div class="card mt-4">
+        <div class="card-header">
+            <h5>文本统计汇总</h5>
+        </div>
+        <div class="card-body">
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="card">
+                        <div class="card-body">
+                            <h6 class="text-center">文本文件总字符数</h6>
+                            <p class="text-center display-4 text-primary">{{ total_char_count }}</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="card">
+                        <div class="card-body">
+                            <h6 class="text-center">文本文件总行数</h6>
+                            <p class="text-center display-4 text-success">{{ total_line_count }}</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <div class="mt-4">
+        <a href="{{ url_for('super_admin_dashboard') }}" class="btn btn-primary">返回首页</a>
+    </div>
+</div>
+{% endblock %}

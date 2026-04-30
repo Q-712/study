@@ -1,0 +1,70 @@
+{% extends 'base.html' %}
+
+{% block title %}文件管理 - 知境文本分析系统{% endblock %}
+
+{% block content %}
+<div class="container">
+    <h2 class="mb-4">文件管理</h2>
+    
+    <!-- 搜索和添加按钮 -->
+    <div class="mb-4">
+        <div class="row">
+            <div class="col-md-8">
+                <form class="d-flex" action="{{ url_for('admin_manage_files') }}" method="get">
+                    <input class="form-control me-2" type="search" name="search" placeholder="搜索文件名、描述或类型..." value="{{ search_query }}">
+                    <button class="btn btn-outline-success" type="submit">搜索</button>
+                </form>
+            </div>
+            <div class="col-md-4 text-right">
+                <a href="{{ url_for('admin_upload_file') }}" class="btn btn-primary">上传文件</a>
+            </div>
+        </div>
+    </div>
+    
+    <div class="card">
+        <div class="card-header">
+            <h5>文件列表</h5>
+        </div>
+        <div class="card-body">
+            {% if files %}
+            <div class="table-responsive">
+                <table class="table table-striped">
+                    <thead>
+                        <tr>
+                            <th>文件名</th>
+                            <th>类型</th>
+                            <th>大小</th>
+                            <th>描述</th>
+                            <th>上传时间</th>
+                            <th>操作</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for file in files %}
+                            <tr>
+                                <td>{{ file.original_filename }}</td>
+                                <td>{{ file.file_type.upper() }}</td>
+                                <td>{{ (file.size / 1024 / 1024)|round(2) }} MB</td>
+                                <td>{{ file.description or '无' }}</td>
+                                <td>{{ file.upload_date.strftime('%Y-%m-%d %H:%M') }}</td>
+                                <td>
+                                    <form method="POST" action="{{ url_for('admin_delete_file', file_id=file.id) }}" onsubmit="return confirm('确定要删除这个文件吗？')">
+                                        <button type="submit" class="btn btn-sm btn-danger">删除</button>
+                                    </form>
+                                </td>
+                            </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+            {% else %}
+                <p class="text-center">当前没有文件记录。</p>
+            {% endif %}
+        </div>
+    </div>
+    
+    <div class="mt-4">
+        <a href="{{ url_for('admin_dashboard') }}" class="btn btn-primary">返回首页</a>
+    </div>
+</div>
+{% endblock %}
